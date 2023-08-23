@@ -28,20 +28,19 @@ const removeContact =async (req, res) => {
       throw HttpError(404, 'Not found');
     }
     res.status(200).json({
-    status: 'success',
-    code: 200,
-    message: 'Сontact deleted!'
+    message: 'сontact deleted'
    }); 
 }
 
 const updateContact =async (req, res) => {
     const { contactId } = req.params;
-    const result = await contacts.updateContact(contactId, req.body);
+    const result = await contacts.getContactById(contactId, req.body);
     if (!result) {
       throw HttpError(404, 'Not found');
     }
     res.json(result);
 }
+
 
 module.exports = {
   listContacts: ctrlWrapper(listContacts),
