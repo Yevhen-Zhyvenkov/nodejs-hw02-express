@@ -1,5 +1,4 @@
 const { Contact }  = require('../models/contacts');
-
 const { HttpError, ctrlWrapper } = require('../helpers');
 
 const listContacts = async (_, res) => {
@@ -21,7 +20,7 @@ const addContact = async (req, res) => {
     res.status(201).json(result);
 }
 
-const removeContact =async (req, res) => {
+const removeContact = async (req, res) => {
     const { contactId } = req.params;
     const result = await Contact.findByIdAndRemove(contactId);
     if (!result) {
