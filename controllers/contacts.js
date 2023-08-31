@@ -39,7 +39,7 @@ const updateContact =async (req, res) => {
     }
     res.json(result);
 }
-const updateFavorite =async (req, res) => {
+const updateFavorite = async (req, res) => {
     const { contactId } = req.params;
     const result = await Contact.findByIdAndUpdate(contactId, req.body, {new:true});
     if (!result) {
