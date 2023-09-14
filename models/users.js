@@ -24,7 +24,19 @@ const usersSchema = new Schema(
       type: String,
       required: true,
     },
-    token: String,
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      required: [true, "Verify token is required"],
+    },
+    token: {
+      type: String,
+      default: "",
+    },
+    // token: String,
   },
   {
     versionKey: false,
@@ -52,7 +64,13 @@ const loginSchema = Joi.object({
     .messages({ "any.required": `missing required password field` }),
 });
 
+const emailSchema = Joi.object({
+  email: Joi.string()
+    .required()
+    .messages({ "any.required": `missing required email field` }),
+});
 const schemas = {
+  emailSchema,
   registerSchema,
   loginSchema,
 };
